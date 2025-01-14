@@ -58,16 +58,16 @@ router.delete('/menu/:id', async (req, res) => {
 
 // Ambil semua order
 router.get('/order', async (req, res) => {
-    const { tableId } = req.query;
-
-    if (!tableId || isNaN(tableId)) {
-        return res.status(400).json({ message: 'Nomor meja harus berupa angka yang valid' });
-    }
-
     try {
-        const orders = await Order.find({ tableId: parseInt(tableId, 10) }); // Filter berdasarkan tableId
+        let orders;
+        if (req.query.tableId && !isNaN(req.query.tableId)) {
+            orders = await Order.find({ tableId: parseInt(req.query.tableId, 10) });
+        } else {
+            orders = await Order.find(); // Ambil semua pesanan jika tableId tidak diberikan
+        }
         res.json(orders);
     } catch (error) {
+        console.error('Error fetching orders:', error);
         res.status(500).json({ message: 'Terjadi kesalahan saat mengambil pesanan', error });
     }
 });

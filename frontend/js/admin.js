@@ -23,9 +23,13 @@ function fetchOrders() {
             }
             return res.json();
         })
-        .then((orders) => renderOrders(orders))
-        .catch((err) => console.error('Error fetching orders:', err)); // Penanganan error untuk fetch
+        .then((orders) => {
+            console.log('Orders fetched:', orders); // Tambahkan log ini
+            renderOrders(orders);
+        })
+        .catch((err) => console.error('Error fetching orders:', err));
 }
+
 
 
 function renderOrders(orders) {
