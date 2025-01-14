@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Edit</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Edit Menu</h1>
+        <button onclick="logout()">Logout</button>
+    </header>
+
+    <main class="container">
+        <div class="left-section">
+            <section class="add-menu">
+                <h2>Tambah Menu</h2>
+                <form id="add-menu-form" enctype="multipart/form-data">
+                    <input type="text" id="menu-name" placeholder="Nama Menu" required>
+                    <input type="number" id="menu-price" placeholder="Harga (Rp)" required>
+                    <input type="file" id="menu-image" accept="image/*" required>
+                    <button type="submit">Tambah Menu</button>
+                </form>
+            </section>
+
+            <section class="generate-qrcode">
+                <h2>Generate QR Code Meja</h2>
+                <form id="generate-qrcode-form">
+                    <input type="text" id="table-id" placeholder="Nomor Meja" required>
+                    <button type="submit">Generate QR Code</button>
+                </form>
+                <div id="qrcode-result"></div>
+            </section>
+        </div>
+
+        <div class="right-section">
+            <section>
+                <h2>Daftar Menu</h2>
+                <div id="menu-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/menu.js"></script>
+</body>
+</html>

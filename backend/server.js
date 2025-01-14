@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 // Static Files (Frontend)
 app.use(express.static(path.join(__dirname, '../frontend')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect MongoDB
 mongoose.connect('mongodb://localhost:27017/restaurant_order', {
@@ -26,11 +27,13 @@ app.get('/', (req, res) => {
     res.send('Backend server is running...');
 });
 
-const adminRoutes = require('./routes/adminroutes');
-app.use('/api/admin', adminRoutes);
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/', adminRoutes);
 
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
 

@@ -2,46 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HAKA - Mobile Ordering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Warkop Fahri - Mobile View</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>HAKA Menu</h1>
-        <div class="cart-icon">
-            <img src="cart-icon.png" alt="Cart Icon">
-            <span class="cart-count">0</span>
-        </div>
+        <h1>Menu Warkop Fahri</h1>
     </header>
-    <main>
+
+    <main class="menu-container">
         <section id="menu-list"></section>
-        <section class="order-summary">
-            <h2>Order Summary</h2>
-            <div class="order-items"></div>
-            <div class="total">
-                <p>Total:</p>
-                <span id="total-price">Rp0</span>
+    </main>
+
+    <!-- Order Summary -->
+    <div class="order-summary hidden" id="order-summary">
+        <div class="summary-content">
+            <div class="summary-left">
+                <div class="cart-icon">
+                    🛒
+                    <span id="cart-count">0</span>
+                </div>
+                <p>Total</p>
             </div>
-            <button id="checkout-button">CHECK OUT</button>
-        </section>
-        <div id="checkout-modal" class="modal">
-            <div class="modal-content">
-                <h2>Pilih Metode Pembayaran</h2>
-                <form id="payment-form">
-                    <label>
-                        <input type="radio" name="payment" value="bank" required> Transfer Bank
-                    </label>
-                    <label>
-                        <input type="radio" name="payment" value="cash" required> Bayar di Kasir
-                    </label>
-                    <button type="submit">Bayar Sekarang</button>
-                </form>
-                <button id="close-modal">Tutup</button>
+            <div class="summary-right">
+                <p id="summary-total-price">Rp0</p>
+                <button id="summary-checkout-button">CHECK OUT</button>
             </div>
         </div>
-        
-    </main>
-    <script src="js/menu.js"></script>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <footer class="bottom-nav">
+        <button id="nav-menu" class="nav-btn" onclick="navigate('index.html')">Menu</button>
+        <button id="nav-orderlist" class="nav-btn" onclick="navigate('orderlist.html')">Order List</button>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tableId = urlParams.get('tableId'); // Ambil tableId dari URL
     
+            if (tableId) {
+                localStorage.setItem('tableId', tableId); // Simpan ke localStorage jika perlu
+                console.log(`Nomor Meja: ${tableId}`);
+            } else {
+                console.warn('Nomor meja tidak ditemukan!');
+            }
+        });
+    </script>
+    
+    <script src="js/userMenu.js"></script>
 </body>
 </html>
